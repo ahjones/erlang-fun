@@ -154,3 +154,20 @@
      Arguments = ["Hello world~n", []].
      apply(Module, Function, Arguments).
      #+END_SRC
+
+** Concurrent Erlang
+*** Creating a process
+    #+BEGIN_SRC erlang
+    Pid = spawn(Mod, Func, Args)
+    #+END_SRC
+
+    Spawn never fails, but the process can terminate abnormally when
+    run-time errors occur.
+*** Sending a message
+    #+BEGIN_SRC erlang
+    Pid ! Msg
+    #+END_SRC
+
+    There isn't shared memory. The only way to communicate between
+    processes is with messages. The send won't fail. If the process
+    doesn't exist, the message will get thrown away.
