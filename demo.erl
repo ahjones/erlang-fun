@@ -1,8 +1,6 @@
 -module(demo).
 -export([double/1, sum/1, sum/2, create/1, reverse_create/1]).
 
-% Comment
-
 double(X) ->
     times(X, 2).
 
