@@ -156,6 +156,11 @@
      #+END_SRC
 
 ** Concurrent Erlang
+*** Useful functions
+    Pid = spawn(Mod, Func, Args) :: spawn a new process
+    self() :: Get own threads process ID
+    register(Alias, Pid) :: Register the process
+    
 *** Creating a process
     #+BEGIN_SRC erlang
     Pid = spawn(Mod, Func, Args)
@@ -165,9 +170,38 @@
     run-time errors occur.
 *** Sending a message
     #+BEGIN_SRC erlang
-    Pid ! Msg
+    Pid ! Msg.
+
+    %eg
+    self() ! hello.
+    flush().
     #+END_SRC
 
     There isn't shared memory. The only way to communicate between
     processes is with messages. The send won't fail. If the process
     doesn't exist, the message will get thrown away.
+
+*** Receiving a message
+    #+BEGIN_SRC erlang
+    receive
+        {reset, Board} -> reset(Board);
+        _Other         -> {error, unknown_msg}
+    end
+    #+END_SRC
+
+*** Registering
+    Processes can be registered with register. If a message is sent to
+    a registerd process that doesn't exist then the sending process
+    ends. 
+
+*** Timeout
+    #+BEGIN_SRC erlang
+    receive
+        {reset, Board} -> reset(Board);
+        _Other         -> {error, unknown_msg}
+    after 1000 ->
+        {error, timeout}
+    end
+    #+END_SRC
+
+    Be careful: after a timeout the receive can be hit.
