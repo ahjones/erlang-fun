@@ -205,3 +205,8 @@
     #+END_SRC
 
     Be careful: after a timeout the receive can be hit.
+
+*** Links
+    Link creates a bi directional link between processes. Spawn link
+    creates a process then links them. Exit signals are sent to all
+    processes that are linked to an abnormally terminating process.
