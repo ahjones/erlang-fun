@@ -134,3 +134,6 @@
     valid_age(_) ->
         false;
     #+END_SRC
+
+*** Recursion
+    Erlang has TCO.
