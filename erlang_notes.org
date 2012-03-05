@@ -137,3 +137,13 @@
 
 *** Recursion
     Erlang has TCO.
+
+
+*** Builtins (BIFs)
+    date()
+    time()
+    length(List)
+    ...etc
+
+    Be careful running the BIFs: the process won't be suspended until
+    the BIF has completed executing.
