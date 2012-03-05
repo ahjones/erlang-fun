@@ -1,0 +1,112 @@
+* Erlang
+** Misc
+   90% of the TV phone voting systems run on Erlang.
+   "Soft real time" : don't rely on it.
+** Basic erlang
+*** Running
+    c(module). % compiles the module
+    module:function(). % Calls the function
+
+*** Data types
+**** Integers
+     - 1
+     - 10
+     - $a - the ascii value for a
+
+**** Floats
+     - Not efficient
+     - 6.2134
+     - Erlang comes from telecomms that doesn't really use floats.
+
+**** Constant literals
+     - Atoms
+     - Start lower case or enclosed with ''
+
+**** Booleans
+     - No booleans: false and true are atoms
+     - 1 =/= 2 true
+     - 1 < two. : true, but comparing lexicographicaly
+
+**** Tuples
+     - Data type with fixed num of items
+     - {123, bcd}
+     - Can contain valid erlang expressions
+     - Tagged tuple: {person, 'Andrew', 'Jones'}
+
+**** Lists
+     - Variable number of items
+     - [1, 2, 3, eight, nine]
+     - Strings are lists of ASCII values
+     - [$h,$e,$l,$l,$o] : "hello"
+     - Head and tail
+     - List = [Element | List] or []
+     - Lists with an empty tail element are called proper lists
+     - [ 1 ] is the same as [1 | [] ]
+
+**** Variables
+     - Start with upper case letter or underscore
+     - Underscore is the don't care variable: won't be bound
+     - Can only be bound once
+     - Forget: f(). f(A).
+
+**** Complex data structures
+     - Nested simple data structures
+     - Eg binary tree with tuple
+
+*** Pattern matching
+    Used for assigning values to variables, controlling execution,
+    extracting values from compound types.
+
+    Pattern = Expression
+
+    #+BEGIN_SRC erlang
+    {B, C, D} = {10, foo, bar}.
+
+    [E, F | G] = [1,2,3,4,5].
+    #+END_SRC
+
+    Must either succeed or fail.
+
+    src_erlang{[A,B] = [ 1 ]} fails.
+
+*** Functions
+
+    #+BEGIN_SRC erlang
+    area({square, Side}) -> Side * Side;
+    area({circle, Radius}) -> 3.14 * Radius * Radius;
+    #+END_SRC
+
+    clause head: area({square, Side})
+    Uses pattern matching for finding function to call
+    Semicolon is clause seperator
+    Period is function terminator
+
+    Can't type them in the shell, they must be in a module.
+
+    The first clause that's matched is used. At least one clause must
+    match.
+
+    #+BEGIN_SRC erlang
+    factorial(0) -> 1;
+    factorial(N) -> N * factorial(N-1).
+    #+END_SRC
+    
+*** Condition evaluation
+
+    #+BEGIN_SRC erlang
+    case lists:member(foo, List) of 
+        true -> ok;
+	false -> {error, unknown} % note no terminator
+    end
+    #+END_SRC
+
+    Idiomatic erlang doesn't catch errors. There'll be a runtime error
+    if a pattern doesn't match, let it bubble. Don't be defensive.
+
+    #+BEGIN_SRC erlang
+    if
+        X < 1 -> smaller;
+	X > 1 -> greater;
+        X == 1 => equal
+    end
+    #+END_SRC
