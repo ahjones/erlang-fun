@@ -157,9 +157,9 @@
 
 ** Concurrent Erlang
 *** Useful functions
-    Pid = spawn(Mod, Func, Args) :: spawn a new process
-    self() :: Get own threads process ID
-    register(Alias, Pid) :: Register the process
+    - Pid = spawn(Mod, Func, Args) :: spawn a new process
+    - self() :: Get own threads process ID
+    - register(Alias, Pid) :: Register the process
     
 *** Creating a process
     #+BEGIN_SRC erlang
