@@ -110,3 +110,24 @@
         X == 1 => equal
     end
     #+END_SRC
+
+*** Guards
+    
+    Can be used in function heads, case clauses, receive and if
+    statements.
+
+    #+BEGIN_SRC erlang
+    factorial(N) when N > 0 ->
+        N * factorial(N-1);
+    factorial(0) -> 1.
+    #+END_SRC
+
+    If all guards have to succeed use ',' to separate them. If one
+    guard has to succeed use ';' to separate them.
+
+    #+BEGIN_SRC erlang
+    valid_age(Age) when Age >= 18, Age =< 99 -> % Note >= and =<
+        true;
+    valid_age(_) ->
+        false;
+    #+END_SRC
