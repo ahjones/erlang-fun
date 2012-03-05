@@ -1,5 +1,5 @@
 -module(demo).
--export([double/1, sum/1, sum/2, create/1, reverse_create/1, create2/1]).
+-export([double/1, sum/1, sum/2, sum2/1, create/1, reverse_create/1, create2/1]).
 
 double(X) ->
     times(X, 2).
@@ -9,12 +9,14 @@ times(X, N) ->
 
 sum(N) when N >= 0, N =< 1 ->
     N;
-
 sum(N) ->
     sum(N-1) + N.
 
 sum(N,M) when N =< M ->
     sum(M) - sum(N-1).
+
+sum2(N) ->
+    (N * (N + 1) / 2).
 
 create(X, 0) ->
     X;
