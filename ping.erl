@@ -19,9 +19,7 @@ start() ->
     
 stop() ->
     a ! stop,
-    b ! stop,
-    unregister(a),
-    unregister(b).
+    b ! stop.
 
 send(N) ->
     a ! {message, b, N},
