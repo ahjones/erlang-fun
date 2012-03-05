@@ -17,6 +17,8 @@
      - Not efficient
      - 6.2134
      - Erlang comes from telecomms that doesn't really use floats.
+     - Division with / always returns floating point numbers.
+     - Use div and rem if you want an integer.
 
 **** Constant literals
      - Atoms
