@@ -138,7 +138,6 @@
 *** Recursion
     Erlang has TCO.
 
-
 *** Builtins (BIFs)
     date()
     time()
@@ -147,3 +146,11 @@
 
     Be careful running the BIFs: the process won't be suspended until
     the BIF has completed executing.
+**** Meta
+
+     #+BEGIN_SRC erlang
+     Module = io.
+     Function = format.
+     Arguments = ["Hello world~n", []].
+     apply(Module, Function, Arguments).
+     #+END_SRC
