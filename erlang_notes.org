@@ -2,7 +2,7 @@
 ** Misc
    90% of the TV phone voting systems run on Erlang.
    "Soft real time" : don't rely on it.
-** Basic erlang
+** Basic Erlang
 *** Running
     c(module). % compiles the module
     module:function(). % Calls the function
@@ -101,7 +101,8 @@
     #+END_SRC
 
     Idiomatic erlang doesn't catch errors. There'll be a runtime error
-    if a pattern doesn't match, let it bubble. Don't be defensive.
+    if a pattern doesn't match, let it bubble. Don't be defensive,
+    don't return {error, unknown} as above.
 
     #+BEGIN_SRC erlang
     if
